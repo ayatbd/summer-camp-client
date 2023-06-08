@@ -9,6 +9,7 @@ import { app } from "../firebase/firebase.config";
 const Login = () => {
     const [user, setUser] = useState(null);
     const [error, setError] = useState("");
+    console.log(user, error);
     
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
