@@ -24,7 +24,7 @@ const Navbar = () => {
               Dashboard
             </a>
           </li>
-          {loggedIn ? (
+          {user ? (
             <li>
               <img
                 src={userProfilePicture}
