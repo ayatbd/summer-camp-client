@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 
 const Classes = () => {
@@ -21,14 +23,14 @@ const Classes = () => {
         },
         // Add more class objects as needed
       ];
+
+      const { user } = useContext(AuthContext);
     
       const [isLoggedIn, setIsLoggedIn] = useState(false); // Replace with actual login check
       const handleSelectClass = (classId) => {
-        if (!isLoggedIn) {
-          alert('Please log in before selecting the course.');
-        } else {
-          // Handle class selection logic
-          console.log('Selected class:', classId);
+        console.log(classId)
+        if (!user) {
+            Swal.fire('Please login before select the class')
         }
       };
     return (

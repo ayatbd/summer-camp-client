@@ -40,15 +40,22 @@ const Login = () => {
   
     const handleLoginWithPopUp = () => {
       signInWithPopup(auth, googleProvider)
-        .then((result) => {
-          const loggedUser = result.user;
-          console.log(loggedUser);
-          setUser(loggedUser);
-          Navigate(from, { replace: true});
+      .then(result => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
         })
-        .catch((error) => {
-          console.log("error", error.message);
-        });
+            .then(res => res.json())
+            .then(() => {
+                Navigate(from, { replace: true });
+            })
+    })
     };
   
 
@@ -86,7 +93,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <Link to="/register">
+      <Link>
       <button
         className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-full flex items-center justify-center mb-6"
         onClick={handleLoginWithPopUp}

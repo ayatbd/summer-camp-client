@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
-import { FaBeer } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -96,7 +96,7 @@ const Navbar = () => {
             >
               <img
                 className="w-10 rounded-full border-2 p-1"
-                src={user ? user.photoURL : <FaBeer />}
+                src={user ? user.photoURL : <FaUser />}
               />
             </div>
           </div>
