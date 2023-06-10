@@ -42,7 +42,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/instructor">Instructors</Link>
+              <Link to="/instructors">Instructors</Link>
             </li>
             <li>
               <Link to="/classes">Classes</Link>
@@ -50,7 +50,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link className="ml-2 normal-case text-xl hidden md:inline">
-          Recife Hero
+          Language Learner
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -59,7 +59,7 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/instructor">Instructors</Link>
+            <Link to="/instructors">Instructors</Link>
           </li>
           <li>
             <Link to="/classes">Classes</Link>

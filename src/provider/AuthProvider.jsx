@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
@@ -50,7 +51,7 @@ const AuthProvider = ({ children }) => {
       }, []);
     
       if (loading) {
-        return <progress className="progress w-56"></progress>;
+        return <div className="text-center"><progress className="progress w-56"></progress></div> ;
       }
 
     const authInfo = {

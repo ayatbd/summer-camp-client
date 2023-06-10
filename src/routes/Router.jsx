@@ -5,6 +5,13 @@ import Navbar from './../pages/Shared/Navbar';
 import Footer from './../pages/Shared/Footer';
 import Login from "../pages/Login";
 import Register from './../pages/Register';
+import Dashboard from "../layouts/Dashboard/Dashboard";
+import SelectedClass from "../pages/Dashboard/SelectedClass";
+import EnrolledClass from "../pages/Dashboard/EnrolledClass";
+import AddClass from "../pages/Dashboard/AddClass";
+import MyClass from "../pages/Dashboard/MyClass";
+import Classes from "../pages/Classes";
+import Instructors from "../pages/Instructors";
 
 
 export const router = createBrowserRouter([
@@ -32,6 +39,36 @@ export const router = createBrowserRouter([
             path: "register",
             element: <Register></Register>,
         },
+        {
+            path: "classes",
+            element: <Classes></Classes>
+        },
+        {
+            path: "instructors",
+            element: <Instructors></Instructors>
+        },
       ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "selectedclass",
+                element: <SelectedClass></SelectedClass>
+            },
+            {
+                path: "enrolledclass",
+                element: <EnrolledClass></EnrolledClass>
+            },
+            {
+                path: "addclass",
+                element: <AddClass></AddClass>
+            },
+            {
+                path: "myclass",
+                element: <MyClass></MyClass>
+            },
+        ]
+    }
   ]);
