@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { app } from "../firebase/firebase.config";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -53,6 +54,13 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(() => {
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'User logged in successfully.',
+                showConfirmButton: false,
+                timer: 1500
+            });
                 Navigate(from, { replace: true });
             })
     })
