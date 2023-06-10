@@ -1,19 +1,19 @@
-import { FaBook, FaHome, FaUtensils } from "react-icons/fa";
+import { FaChalkboardTeacher, FaHome, FaLeanpub, FaUserFriends, FaUtensils } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../../pages/Shared/Navbar";
 import Footer from "../../pages/Shared/Footer";
 
 const Dashboard = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   const isStudent = false;
-  const isInstructor = true;
+  const isInstructor = false;
 
   return (
     <div>
       <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center mt-5">
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
@@ -44,12 +44,12 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/addclass">
-                    <FaHome></FaHome> Add a Class
+                    <FaLeanpub></FaLeanpub> Add a Class
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/myclass">
-                    <FaHome></FaHome> My Classes
+                    <FaChalkboardTeacher></FaChalkboardTeacher> My Classes
                   </NavLink>
                 </li>
               </>
@@ -58,12 +58,12 @@ const Dashboard = () => {
               <>
                 <li>
                   <NavLink to="/dashboard/manageclass">
-                    <FaHome></FaHome> Manage Classes
+                    <FaChalkboardTeacher></FaChalkboardTeacher> Manage Classes
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/manageuser">
-                    <FaBook></FaBook> Manage Users
+                    <FaUserFriends></FaUserFriends> Manage Users
                   </NavLink>
                 </li>
               </>

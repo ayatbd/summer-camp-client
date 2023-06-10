@@ -56,7 +56,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link className="ml-2 normal-case text-xl hidden md:inline">
-          Language Learner
+          LingoStars
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
