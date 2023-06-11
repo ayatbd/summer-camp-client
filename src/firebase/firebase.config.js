@@ -3,14 +3,16 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+console.log('env variable', import.meta.env.VITE_apiKey)
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDktIPp0bMo2g7m4MsJLyTdBAIAZNmi2pE",
-  authDomain: "summer-camp-school-988b3.firebaseapp.com",
-  projectId: "summer-camp-school-988b3",
-  storageBucket: "summer-camp-school-988b3.appspot.com",
-  messagingSenderId: "338935229603",
-  appId: "1:338935229603:web:109fd18fe2363358696316"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
