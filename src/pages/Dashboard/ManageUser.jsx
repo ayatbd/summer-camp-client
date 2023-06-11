@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
@@ -8,6 +9,23 @@ const ManageUser = () => {
 
   const handleAdminMaking = (admin) => {
     console.log(admin);
+    fetch(`http://localhost:5000/users/admin/${admin._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${admin.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
   };
 
   const handleInstructorMaking = (instructor) => {
