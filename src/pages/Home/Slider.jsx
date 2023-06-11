@@ -5,7 +5,7 @@ import img5 from "../../assets/images/img5.jpeg";
 
 const Slider = () => {
   return (
-    <div className="carousel h-[28rem] w-full my-20">
+    <div className="carousel h-[36rem] w-full my-20">
       <div id="slide1" className="carousel-item relative w-full">
         <img src={img4} className="w-full" alt="Slide 1" />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -16,9 +16,9 @@ const Slider = () => {
             ❯
           </a>
         </div>
-        <div className="absolute text-black top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="font-bold text-3xl">Here is simple heading text.</h2>
-          <p className="my-5">Some text describing slide 1</p>
+        <div className="bg-teal-500 p-10 rounded absolute text-black top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <h2 className="font-bold text-3xl">Develop your language skill now..</h2>
+          <p className="my-5">Get access to compact lessons from the experts and connect with a community of native speakers to help you master words faster.</p>
           <button className="btn">Read More</button>
         </div>
       </div>
@@ -32,9 +32,9 @@ const Slider = () => {
             ❯
           </a>
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="font-bold text-3xl">Here is simple heading text.</h2>
-          <p className="my-5">Some text describing slide 2</p>
+        <div className="bg-teal-500 p-10 rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <h2 className="font-bold text-3xl">Learn from the base..</h2>
+          <p className="my-5">Get access to compact lessons from the experts and connect with a community of native speakers to help you master words faster.</p>
           <button className="btn">Read More</button>
         </div>
       </div>
@@ -48,9 +48,9 @@ const Slider = () => {
             ❯
           </a>
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="font-bold text-3xl">Here is simple heading text.</h2>
-          <p className="my-5">Some text describing slide 3</p>
+        <div className="bg-teal-500 p-10 rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <h2 className="font-bold text-3xl">Skill boost up...</h2>
+          <p className="my-5">Get access to compact lessons from the experts and connect with a community of native speakers to help you master words faster.</p>
           <button className="btn">Read More</button>
         </div>
       </div>
@@ -64,9 +64,9 @@ const Slider = () => {
             ❯
           </a>
         </div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <div className="bg-teal-500 p-10 rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <h2 className="font-bold text-3xl">Here is simple heading text.</h2>
-          <p className="my-5">Some text describing slide 4</p>
+          <p className="my-5">Get access to compact lessons from the experts and connect with a community of native speakers to help you master words faster.</p>
           <button className="btn">Read More</button>
         </div>
       </div>

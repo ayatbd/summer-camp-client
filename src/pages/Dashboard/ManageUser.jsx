@@ -1,43 +1,54 @@
+import { useQuery } from "@tanstack/react-query";
+
 const ManageUser = () => {
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
+    const res = await fetch("http://localhost:5000/users");
+    return res.json();
+  });
+
+  const handleAdminMaking = (admin) => {
+    console.log(admin);
+  };
+
+  const handleInstructorMaking = (instructor) => {
+    console.log(instructor);
+  };
+
   return (
     <div className="overflow-x-auto w-full">
       <table className="table">
         {/* head */}
         <thead>
           <tr>
-            <th>#</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th className="text-center">#</th>
+            <th className="text-center">Name</th>
+            <th className="text-center">Email</th>
+            <th className="text-center">Role</th>
           </tr>
         </thead>
         <tbody>
           {/* row 1 */}
-          { <tr>
-            <th>
-                1
-            </th>
-            <td>
-              <div className="flex items-center space-x-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
-                    <img
-                      src="/tailwind-css-component-profile-2@56w.png"
-                    />
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td>
-              ayat
-            </td>
-            <td>email.com</td>
-            <th className="">
-              <button className="btn btn-accent">Admin</button>
-              <button className="btn btn-accent ml-1">Instructor</button>
-            </th>
-          </tr>}
+          {users.map((user, index) => (
+            <tr key={user.email}>
+              <th className="text-center">{index + 1}</th>
+              <td className="text-center">{user.name}</td>
+              <td className="text-center">{user.email}</td>
+              <th className="text-center">
+                <button
+                  onClick={handleAdminMaking}
+                  className="btn btn-ghost bg-emerald-400 p-2"
+                >
+                  Admin
+                </button>
+                <button
+                  onClick={handleInstructorMaking}
+                  className="btn btn-ghost bg-emerald-400 p-2 ml-2"
+                >
+                  Instructor
+                </button>
+              </th>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

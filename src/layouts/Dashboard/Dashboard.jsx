@@ -6,7 +6,7 @@ import Footer from "../../pages/Shared/Footer";
 const Dashboard = () => {
   const isAdmin = true;
   const isStudent = false;
-  const isInstructor = false;
+  const isInstructor = true;
 
   return (
     <div>
@@ -23,6 +23,7 @@ const Dashboard = () => {
           </label>
         </div>
         <div className="drawer-side">
+          
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {isStudent && (

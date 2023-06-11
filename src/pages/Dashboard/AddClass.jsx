@@ -1,29 +1,24 @@
-import { useState } from "react";
 
+import { useForm } from 'react-hook-form';
 
 const AddClass = () => {
-//     const [className, setClassName] = useState('');
-//   const [classImage, setClassImage] = useState(null);
-//   const [availableSeats, setAvailableSeats] = useState('');
-//   const [price, setPrice] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
     <div className="max-w-md mx-auto my-20">
       <h1 className="text-2xl font-bold mb-4">Add a Class</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
         <div className="mb-4">
           <label htmlFor="className" className="block mb-2 font-medium">
             Class name:
           </label>
           <input
             type="text"
-            id="className"
-            name="className"
+            {...register('className', { required: true })} id="className"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -34,8 +29,7 @@ const AddClass = () => {
           </label>
           <input
             type="file"
-            id="classImage"
-            name="classImage"
+            {...register('classImage', { required: true })} id="classImage"
             accept="image/*"
             required
             className="w-full"
@@ -47,8 +41,7 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            id="instructorName"
-            name="instructorName"
+            {...register('instructorName', { required: true })} id="instructorName"
             readOnly
             value="John Doe"
             className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-100"
@@ -60,8 +53,7 @@ const AddClass = () => {
           </label>
           <input
             type="email"
-            id="instructorEmail"
-            name="instructorEmail"
+            {...register('instructorEmail', { required: true })} id="instructorEmail"
             readOnly
             value="john.doe@example.com"
             className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-100"
@@ -73,8 +65,7 @@ const AddClass = () => {
           </label>
           <input
             type="number"
-            id="availableSeats"
-            name="availableSeats"
+            {...register('availableSeats', { required: true })} id="availableSeats"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -85,8 +76,7 @@ const AddClass = () => {
           </label>
           <input
             type="number"
-            id="price"
-            name="price"
+            {...register('price', { required: true })} id="price"
             step="0.01"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"

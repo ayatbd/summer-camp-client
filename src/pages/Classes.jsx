@@ -22,12 +22,12 @@ const Classes = () => {
           availableSeats: 0,
           price: 60,
         },
-        // Add more class objects as needed
+        
       ];
 
       const { user } = useContext(AuthContext);
     
-      const [isLoggedIn, setIsLoggedIn] = useState(false); // Replace with actual login check
+      const [isLoggedIn, setIsLoggedIn] = useState(false); 
       const handleSelectClass = (classId) => {
         console.log(classId)
         if (!user) {
