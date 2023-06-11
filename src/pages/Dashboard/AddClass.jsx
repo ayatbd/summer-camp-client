@@ -1,11 +1,35 @@
 
 import { useForm } from 'react-hook-form';
 
+const img_host_token= import.meta.env.VITE_Image_Upload_token;
+
 const AddClass = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
+  const img_host_url = `https://api.imgbb.com/1/upload?key=${img_host_token}`
+
 
   const onSubmit = (data) => {
+    const formData = new FormData();
+        formData.append('image', data.classImage[0])
+
+        fetch(img_host_url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgRes => {
+            console.log(imgRes);
+            if(imgRes.success){
+              const imgURL = imgRes.data.display_url;
+              console.log(data, imgURL);
+              const {availableSeats, className, instructorEmail, instructorName, price} = data;
+              const newClass = {availableSeats : parseFloat(availableSeats), className, instructorEmail, instructorName, price : parseFloat(price), image:imgURL};
+              console.log(newClass)
+          }
+        })
+
     console.log(data);
+    console.log(img_host_token);
   };
 
   return (

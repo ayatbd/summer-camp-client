@@ -34,12 +34,16 @@ const ManageUser = () => {
               <td className="text-center">{user.name}</td>
               <td className="text-center">{user.email}</td>
               <th className="text-center">
-                <button
-                  onClick={handleAdminMaking}
-                  className="btn btn-ghost bg-emerald-400 p-2"
-                >
-                  Admin
-                </button>
+                  {user.role === "admin" ? (
+                    "admin"
+                  ) : (
+                    <button
+                      onClick={() => handleAdminMaking(user)}
+                      className="btn btn-ghost bg-emerald-400 p-2"
+                    >
+                      Admin
+                    </button>
+                  )}
                 <button
                   onClick={handleInstructorMaking}
                   className="btn btn-ghost bg-emerald-400 p-2 ml-2"
