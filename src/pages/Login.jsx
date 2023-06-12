@@ -98,7 +98,7 @@ const Login = () => {
             />
             <button
               type="button"
-              className="absolute right-3 top-1/2 transform focus:outline-none"
+              className="absolute right-3 top-1/2 transfor focus:outline-none"
               onClick={togglePasswordVisibility}
             >
               {passwordVisible ? <AiFillEyeInvisible size={24 } /> : <AiFillEye size={24} />}
