@@ -3,9 +3,12 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { ThemeContext } from "@emotion/react";
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const { isDarkMode } = useContext(ThemeContext);
 
   const handleLogOut = () => {
     logOut()
@@ -21,7 +24,7 @@ const Navbar = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="navbar bg-orange-200 py-5">
+    <div className={`navbar ${isDarkMode ? 'navbar-dark' : 'bg-orange-200'}`}>
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
