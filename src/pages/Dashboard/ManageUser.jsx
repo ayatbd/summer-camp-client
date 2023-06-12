@@ -7,9 +7,11 @@ const ManageUser = () => {
     return res.json();
   });
 
-  const handleAdminMaking = (admin) => {
-    console.log(admin);
-    fetch(`http://localhost:5000/users/admin/${admin._id}`, {
+  // make admin 
+
+  const handleAdminMaking = (user) => {
+    console.log(user);
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -20,7 +22,7 @@ const ManageUser = () => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: `${admin.name} is an Admin Now!`,
+                    title: "The user is Admin Now!",
                     showConfirmButton: false,
                     timer: 1500
                   })
@@ -28,8 +30,27 @@ const ManageUser = () => {
         })
   };
 
-  const handleInstructorMaking = (instructor) => {
-    console.log(instructor);
+  // make instructor 
+
+  const handleInstructorMaking = (user) => {
+    console.log(user);
+    fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "The user is Instructor Now!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
   };
 
   return (
@@ -53,21 +74,31 @@ const ManageUser = () => {
               <td className="text-center">{user.email}</td>
               <th className="text-center">
                   {user.role === "admin" ? (
-                    "admin"
+                    <span className="text-bolder">ADMIN</span>
                   ) : (
                     <button
                       onClick={() => handleAdminMaking(user)}
-                      className="btn btn-ghost bg-emerald-400 p-2"
+                      className="btn btn-ghost hover:bg-emerald-400 p-2"
                     >
                       Admin
                     </button>
                   )}
-                <button
+                  {user.role === "instructor" ? (
+                    <span className="text-bolder">INSTRUCTOR</span>
+                  ) : (
+                    <button
+                      onClick={() => handleInstructorMaking(user)}
+                      className="btn btn-ghost hover:bg-emerald-400 p-2"
+                    >
+                      Instructor
+                    </button>
+                  )}
+                {/* <button
                   onClick={handleInstructorMaking}
-                  className="btn btn-ghost bg-emerald-400 p-2 ml-2"
+                  className="btn btn-ghost hover:bg-emerald-400 p-2 ml-2"
                 >
                   Instructor
-                </button>
+                </button> */}
               </th>
             </tr>
           ))}
