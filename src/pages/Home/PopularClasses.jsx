@@ -29,7 +29,7 @@ const PopularClasses = () => {
       <div className="grid grid-cols-3 gap-4 my-14">
         {sortedCards.map((p) => (
           <div
-            key={p.id}
+            key={p._id}
             className={`border-2 rounded ${
               p.availableSeats === 0 ? 'bg-red-200' : isDarkMode ? 'bg-gray-900 text-white' : 'bg-white'
             }`}

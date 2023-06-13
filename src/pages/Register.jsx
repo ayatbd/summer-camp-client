@@ -1,13 +1,14 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../provider/AuthProvider";
+import { useState } from "react";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState("");
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
   const Navigate = useNavigate();
+  const location = useLocation();
 
   const handleRegister = (event) => {
 

@@ -36,7 +36,7 @@ const AddClass = () => {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Item added successfully',
+                            title: 'Class added successfully',
                             showConfirmButton: false,
                             timer: 1500
                           })
@@ -83,9 +83,8 @@ const AddClass = () => {
           <input
             type="text"
             {...register('instructorName', { required: true })} id="instructorName"
-            readOnly
-            value="John Doe"
-            className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-100"
+            
+            className="w-full px-4 py-2 rounded-md border"
           />
         </div>
         <div className="mb-4">
@@ -95,9 +94,8 @@ const AddClass = () => {
           <input
             type="email"
             {...register('instructorEmail', { required: true })} id="instructorEmail"
-            readOnly
-            value="john.doe@example.com"
-            className="w-full px-4 py-2 rounded-md border border-gray-300 bg-gray-100"
+            
+            className="w-full px-4 py-2 rounded-md border"
           />
         </div>
         <div className="mb-4">

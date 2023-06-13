@@ -8,14 +8,14 @@ import img5 from "../../assets/images/img5.jpeg";
 const Slider = () => {
   const isDarkMode = useContext(ThemeContext);
   return (
-    <div className={`carousel h-[36rem] w-full my-20 ${isDarkMode ? 'bg-gray-900' : ''}`}>
+    <div className={`carousel h-[36rem] w-full my-10 ${isDarkMode ? 'bg-gray-900' : ''}`}>
       <div id="slide1" className="carousel-item relative w-full">
         <img src={img4} className="w-full" alt="Slide 1" />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-          <a href="#slide4" className={`btn btn-circle ${isDarkMode ? 'text-white' : ''}`}>
+          <a href="#slide4" className={`btn btn-circle ${isDarkMode ? 'text-white bg-gray-800' : ''}`}>
             ❮
           </a>
-          <a href="#slide2" className={`btn btn-circle ${isDarkMode ? 'text-white' : ''}`}>
+          <a href="#slide2" className={`btn btn-circle ${isDarkMode ? 'text-white bg-gray-800' : ''}`}>
             ❯
           </a>
         </div>

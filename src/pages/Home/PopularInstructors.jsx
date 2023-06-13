@@ -24,10 +24,10 @@ const PopularInstructors = () => {
           <div className="divider w-96"></div>
         </div>
       </div>
-      <div className="my-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="my-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {popular.map((p) => (
           <div
-            key={p.id}
+            key={p._id}
             className={`p-4 border ${
               isDarkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-300 bg-red-200'
             } rounded`}

@@ -1,12 +1,17 @@
-import { FaChalkboardTeacher, FaHome, FaLeanpub, FaUserFriends, FaUtensils } from "react-icons/fa";
+import { FaChalkboardTeacher, FaLeanpub, FaUserFriends } from "react-icons/fa";
+import { BiSelectMultiple } from "react-icons/bi";
+import { SiGoogleclassroom } from "react-icons/si";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../../pages/Shared/Navbar";
 import Footer from "../../pages/Shared/Footer";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
+import useStudent from "../../hooks/useStudent";
 
 const Dashboard = () => {
-  const isAdmin = true;
-  const isStudent = false;
-  const isInstructor = true;
+  const isAdmin = useAdmin();
+  const isStudent = useStudent();
+  const isInstructor = useInstructor();
 
   return (
     <div>
@@ -23,20 +28,19 @@ const Dashboard = () => {
           </label>
         </div>
         <div className="drawer-side">
-          
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {isStudent && (
               <>
                 <li>
                   <NavLink to="/dashboard/selectedclass">
-                    <FaHome></FaHome> My Selected Classes
+                    <BiSelectMultiple></BiSelectMultiple> My Selected Classes
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/dashboard/enrolledclass">
                     {" "}
-                    <FaUtensils></FaUtensils> My Enrolled Classes
+                    <SiGoogleclassroom></SiGoogleclassroom> My Enrolled Classes
                   </NavLink>
                 </li>
               </>
