@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { AuthContext } from "../provider/AuthProvider";
+import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Classes = () => {
   const [classData, setClassData] = useState([]);
-  const { user } = useContext(AuthContext);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const { user } = useAuth();
+  console.log(user);
 
   useEffect(() => {
     fetch("http://localhost:5000/class")
@@ -12,32 +13,58 @@ const Classes = () => {
       .then((data) => setClassData(data));
   }, []);
 
-  const handleSelectClass = (classId) => {
-    console.log(classId);
-    if (!user) {
-      Swal.fire("Please login before selecting the class");
-    } else {
-      const selectedClass = classData.find((cls) => cls.id === classId);
-
-      fetch("http://localhost:5000/selected-class", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(selectedClass),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          
-          console.log("Server response:", data);
+  const handleSelectClass = (id) => {
+    const selectedClass = classData.find((cls) => cls._id === id);
+    fetch("http://localhost:5000/select/check", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: user.id, classId: selectedClass._id }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.selected) {
+          return;
+        }
+        setSelectedCards([...selectedCards, selectedClass._id]);
+        fetch("http://localhost:5000/select", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedClass),
         })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
-  const isLoggedIn = Boolean(user);
+  // const handleSelectClass = (id) => {
+  //   const selectedClass = classData.find((cls) => cls._id === id);
+  //   fetch("http://localhost:5000/select", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(selectedClass),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // };
 
   return (
     <div className="my-20">
@@ -45,7 +72,7 @@ const Classes = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {classData.map((cls) => (
           <div
-            key={cls.id}
+            key={cls._id}
             className={`p-1 border border-gray-300 rounded ${
               cls.availableSeats === 0 ? "bg-red-500" : "bg-white"
             }`}
@@ -63,10 +90,16 @@ const Classes = () => {
               </p>
               <p className="text-gray-500">Price: ${cls.price}</p>
               <button
-                onClick={() => handleSelectClass(cls.id)}
-                disabled={cls.availableSeats === 0 || isLoggedIn}
+                onClick={() => handleSelectClass(cls._id)}
+                disabled={
+                  selectedCards.includes(cls._id) ||
+                  cls.availableSeats === 0 ||
+                  selectedCards.includes(cls._id)
+                }
                 className={`btn btn-accent ${
-                  cls.availableSeats === 0 || isLoggedIn
+                  selectedCards.includes(cls._id) ||
+                  cls.availableSeats === 0 ||
+                  selectedCards.includes(cls._id)
                     ? "opacity-50 cursor-not-allowed"
                     : ""
                 }`}

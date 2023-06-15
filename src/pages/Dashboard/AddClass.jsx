@@ -1,52 +1,62 @@
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
-import { useForm } from 'react-hook-form';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
-
-const img_host_token= import.meta.env.VITE_Image_Upload_token;
+const img_host_token = import.meta.env.VITE_Image_Upload_token;
 
 const AddClass = () => {
+  const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const { register, handleSubmit } = useForm();
-  const img_host_url = `https://api.imgbb.com/1/upload?key=${img_host_token}`
-
+  const img_host_url = `https://api.imgbb.com/1/upload?key=${img_host_token}`;
 
   const onSubmit = (data) => {
     const formData = new FormData();
-        formData.append('image', data.classImage[0])
+    formData.append("image", data.classImage[0]);
 
-        fetch(img_host_url, {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.json())
-        .then(imgRes => {
-            console.log(imgRes);
-            if(imgRes.success){
-              const imgURL = imgRes.data.display_url;
-              console.log(data, imgURL);
-              const {availableSeats, className, instructorEmail, instructorName, price} = data;
-              const newClass = {availableSeats : parseFloat(availableSeats), className, instructorEmail, instructorName, price : parseFloat(price), image:imgURL};
-              console.log(newClass)
-              axiosSecure.post('/class', newClass)
-                .then(data => {
-                    console.log('after posting new class item', data.data)
-                    if(data.data.insertedId){
-                        // reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Class added successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                          })
-                    }
-                })
-          }
-        })
+    fetch(img_host_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imgRes) => {
+        console.log(imgRes);
+        if (imgRes.success) {
+          const imgURL = imgRes.data.display_url;
+          console.log(data, imgURL);
+          const {
+            availableSeats,
+            className,
+            instructorEmail,
+            instructorName,
+            price,
+          } = data;
+          const newClass = {
+            availableSeats: parseFloat(availableSeats),
+            className,
+            email: instructorEmail,
+            instructorName,
+            price: parseFloat(price),
+            image: imgURL,
+          };
+          console.log(newClass);
+          axiosSecure.post("/class", newClass).then((data) => {
+            console.log("after posting new class item", data.data);
+            if (data.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Class added successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+        }
+      });
 
     console.log(data);
-    console.log(img_host_token);
   };
 
   return (
@@ -59,7 +69,8 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            {...register('className', { required: true })} id="className"
+            {...register("className", { required: true })}
+            id="className"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -70,7 +81,8 @@ const AddClass = () => {
           </label>
           <input
             type="file"
-            {...register('classImage', { required: true })} id="classImage"
+            {...register("classImage", { required: true })}
+            id="classImage"
             accept="image/*"
             required
             className="w-full"
@@ -82,8 +94,9 @@ const AddClass = () => {
           </label>
           <input
             type="text"
-            {...register('instructorName', { required: true })} id="instructorName"
-            
+            {...register("instructorName", { required: true })}
+            id="instructorName"
+            value={user?.displayName}
             className="w-full px-4 py-2 rounded-md border"
           />
         </div>
@@ -93,8 +106,9 @@ const AddClass = () => {
           </label>
           <input
             type="email"
-            {...register('instructorEmail', { required: true })} id="instructorEmail"
-            
+            {...register("instructorEmail", { required: true })}
+            id="instructorEmail"
+            value={user?.email}
             className="w-full px-4 py-2 rounded-md border"
           />
         </div>
@@ -104,7 +118,8 @@ const AddClass = () => {
           </label>
           <input
             type="number"
-            {...register('availableSeats', { required: true })} id="availableSeats"
+            {...register("availableSeats", { required: true })}
+            id="availableSeats"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -115,7 +130,8 @@ const AddClass = () => {
           </label>
           <input
             type="number"
-            {...register('price', { required: true })} id="price"
+            {...register("price", { required: true })}
+            id="price"
             step="0.01"
             required
             className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"

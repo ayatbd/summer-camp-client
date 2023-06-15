@@ -9,9 +9,10 @@ import useInstructor from "../../hooks/useInstructor";
 import useStudent from "../../hooks/useStudent";
 
 const Dashboard = () => {
-  const isAdmin = useAdmin();
-  const isStudent = useStudent();
-  const isInstructor = useInstructor();
+  const [isAdmin] = useAdmin();
+  const [isStudent] = useStudent();
+  const [isInstructor] = useInstructor();
+  console.log(isAdmin)
 
   return (
     <div>

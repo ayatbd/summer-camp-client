@@ -26,7 +26,7 @@ const ManageClass = () => {
         </thead>
         <tbody>
           {classData.map((c) => (
-            <tr key={c._email}>
+            <tr key={c._id}>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
