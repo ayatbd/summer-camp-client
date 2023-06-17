@@ -2,61 +2,71 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
 
 const img_host_token = import.meta.env.VITE_Image_Upload_token;
 
 const AddClass = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   const { register, handleSubmit } = useForm();
   const img_host_url = `https://api.imgbb.com/1/upload?key=${img_host_token}`;
 
-  const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.classImage[0]);
+  const onSubmit = async (data) => {
+    setIsSubmitting(true); // Show the spinner
 
-    fetch(img_host_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imgRes) => {
-        console.log(imgRes);
-        if (imgRes.success) {
-          const imgURL = imgRes.data.display_url;
-          console.log(data, imgURL);
-          const {
-            availableSeats,
-            className,
-            instructorEmail,
-            instructorName,
-            price,
-          } = data;
-          const newClass = {
-            availableSeats: parseFloat(availableSeats),
-            className,
-            email: instructorEmail,
-            instructorName,
-            price: parseFloat(price),
-            image: imgURL,
-          };
-          console.log(newClass);
-          axiosSecure.post("/class", newClass).then((data) => {
-            console.log("after posting new class item", data.data);
-            if (data.data.insertedId) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Class added successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            }
-          });
-        }
+    try {
+      const formData = new FormData();
+      formData.append("image", data.classImage[0]);
+
+      const res = await fetch(img_host_url, {
+        method: "POST",
+        body: formData,
       });
 
-    console.log(data);
+      const imgRes = await res.json();
+      console.log(imgRes);
+
+      if (imgRes.success) {
+        const imgURL = imgRes.data.display_url;
+        console.log(data, imgURL);
+        const {
+          availableSeats,
+          className,
+          instructorEmail,
+          instructorName,
+          price,
+        } = data;
+        const newClass = {
+          availableSeats: parseFloat(availableSeats),
+          className,
+          email: instructorEmail,
+          instructorName,
+          price: parseFloat(price),
+          image: imgURL,
+        };
+        console.log(newClass);
+
+        const response = await axiosSecure.post("/class", newClass);
+        console.log("after posting new class item", response.data);
+
+        if (response.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Class added successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+    setIsSubmitting(false); // Hide the spinner
   };
 
   return (
@@ -140,12 +150,23 @@ const AddClass = () => {
         <div className="mb-4">
           <input type="hidden" id="status" name="status" value="pending" />
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
-        >
-          Add
-        </button>
+        <div className="mb-4">
+          <button
+            type="submit"
+            disabled={isSubmitting} // Disable the button during form submission
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+          >
+            {isSubmitting ? (
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            ) : (
+              "Add"
+            )}
+          </button>
+        </div>
       </form>
     </div>
   );

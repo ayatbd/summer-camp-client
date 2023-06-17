@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { ThemeContext } from './Home';
-import { Fade, Slide } from 'react-awesome-reveal';
+import { useContext } from "react";
+import { ThemeContext } from "./Home";
+import { Fade, Slide } from "react-awesome-reveal";
 
 const Animation = () => {
   const isDarkMode = useContext(ThemeContext);
@@ -8,8 +8,8 @@ const Animation = () => {
   return (
     <div
       className={`text-center ${
-        isDarkMode ? 'bg-gray-900 text-white' : 'bg-emerald-300'
-      } py-28 my-20`}
+        isDarkMode ? "bg-gray-900 text-white" : "bg-emerald-300"
+      } py-28`}
     >
       <Slide>
         <h1 className="text-4xl font-bold mb-5">
@@ -17,7 +17,8 @@ const Animation = () => {
         </h1>
       </Slide>
       <Fade delay={1000} cascade damping={0.1}>
-        Get access to compact lessons from the experts and connect with a community of native speakers to help you master words faster.
+        Get access to compact lessons from the experts and connect with a
+        community of native speakers to help you master words faster.
       </Fade>
     </div>
   );

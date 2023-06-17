@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -14,20 +15,20 @@ const Navbar = () => {
     logOut()
       .then(() => {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'User logged out successfully.',
+          position: "top-end",
+          icon: "success",
+          title: "User logged out successfully.",
           showConfirmButton: false,
-          timer: 1500
-      });
-      Navigate('/');
-      })
-      .catch((error) =>{
-         console.log(error)
+          timer: 1500,
         });
+        Navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
-    <div className="navbar bg-orange-200 py-5">
+    <div className="navbar bg-green-200 py-6">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -79,14 +80,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        { !user ?
-            <ul className="mr-10 flex flex-row gap-5">
+        {!user ? (
+          <ul className="mr-10 flex flex-row gap-5">
             <li>
               <Link to="/login" className="btn btn-outline btn-accent">
                 Login
               </Link>
             </li>
-          </ul> :
+          </ul>
+        ) : (
           <div className="flex items-center justify-center">
             <ul className="mr-10 flex flex-row gap-5">
               <li>
@@ -112,7 +114,7 @@ const Navbar = () => {
               />
             </div>
           </div>
-        }
+        )}
       </div>
     </div>
   );

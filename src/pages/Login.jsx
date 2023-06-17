@@ -6,7 +6,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { app } from "../firebase/firebase.config";
 import Swal from "sweetalert2";
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const [user, setUser] = useState(null);
@@ -42,30 +42,32 @@ const Login = () => {
   };
 
   const handleLoginWithPopUp = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        const loggedInUser = result.user;
-        console.log(loggedInUser);
-        const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email };
-        fetch('http://localhost:5000/users', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json'
-          },
-          body: JSON.stringify(saveUser)
-        })
-          .then((res) => res.json())
-          .then(() => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'User logged in successfully.',
-              showConfirmButton: false,
-              timer: 1500
-            });
-            Navigate(from, { replace: true });
+    signInWithPopup(auth, googleProvider).then((result) => {
+      const loggedInUser = result.user;
+      console.log(loggedInUser);
+      const saveUser = {
+        name: loggedInUser.displayName,
+        email: loggedInUser.email,
+      };
+      fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(saveUser),
+      })
+        .then((res) => res.json())
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User logged in successfully.",
+            showConfirmButton: false,
+            timer: 1500,
           });
-      });
+          Navigate(from, { replace: true });
+        });
+    });
   };
 
   const togglePasswordVisibility = () => {
@@ -78,7 +80,12 @@ const Login = () => {
         <h2 className="text-3xl font-bold mb-6">Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-1">Email</label>
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-medium mb-1"
+            >
+              Email
+            </label>
             <input
               name="email"
               type="email"
@@ -88,10 +95,15 @@ const Login = () => {
             />
           </div>
           <div className="mb-4 relative">
-            <label htmlFor="password" className="block text-gray-700 font-medium mb-1">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium mb-1"
+            >
+              Password
+            </label>
             <input
               name="password"
-              type={passwordVisible ? 'text' : 'password'}
+              type={passwordVisible ? "text" : "password"}
               id="password"
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
@@ -101,7 +113,11 @@ const Login = () => {
               className="absolute right-3 top-1/2 transfor focus:outline-none"
               onClick={togglePasswordVisibility}
             >
-              {passwordVisible ? <AiFillEyeInvisible size={24 } /> : <AiFillEye size={24} />}
+              {passwordVisible ? (
+                <AiFillEyeInvisible size={24} />
+              ) : (
+                <AiFillEye size={24} />
+              )}
             </button>
           </div>
           <button
@@ -127,7 +143,12 @@ const Login = () => {
             Login with Google
           </button>
         </Link>
-        <p className="text-gray-600 mb-4">Don't have an account? <a href="/register" className="text-blue-500">Register</a></p>
+        <p className="text-gray-600 mb-4">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-500">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );

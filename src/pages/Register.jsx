@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
@@ -11,7 +11,6 @@ const Register = () => {
   const location = useLocation();
 
   const handleRegister = (event) => {
-
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
@@ -22,27 +21,27 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        const saveUser = { name, email }
-        fetch('http://localhost:5000/users', {
-                            method: 'POST',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
+        const saveUser = { name, email };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(saveUser),
+        })
           .then((res) => res.json())
-          .then(data => {
+          .then((data) => {
             if (data.insertedId) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'User created successfully.',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                Navigate('/');
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              Navigate("/");
             }
-        });
+          });
 
         const user = result.user;
         console.log("created user", user);
@@ -166,6 +165,12 @@ const Register = () => {
             Register
           </button>
         </form>
+        <p className="text-gray-600 mb-4">
+          Have an account?{" "}
+          <Link to="/login" className="text-blue-500">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

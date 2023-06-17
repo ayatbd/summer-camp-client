@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const ManageClass = () => {
   const [classData, setClassData] = useState([]);
@@ -8,6 +9,44 @@ const ManageClass = () => {
       .then((response) => response.json())
       .then((data) => setClassData(data));
   }, []);
+
+  const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Deny it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/class/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your class has been deleted.", "success");
+              const remaining = classData.filter((c) => c._id !== id);
+              setClassData(remaining);
+            }
+          });
+      }
+    });
+  };
+
+  const handleApprove = (id) => {
+    Swal.fire("Approved!", "Your class has been approved.", "success");
+    const updatedClassData = classData.map((c) => {
+      if (c._id === id) {
+        return { ...c, status: "approved" };
+      }
+      return c;
+    });
+    setClassData(updatedClassData);
+  };
 
   return (
     <div className="overflow-x-auto w-full">
@@ -43,8 +82,19 @@ const ManageClass = () => {
               <td>{c.price}</td>
               <td>
                 <div className="flex">
-                  <button className="btn btn-ghost p-2">Approve</button>
-                  <button className="btn btn-ghost p-2">Deny</button>
+                  <button
+                    className="btn btn-ghost p-2"
+                    disabled={c.status === "approved"}
+                    onClick={() => handleApprove(c._id)}
+                  >
+                    {c.status === "approved" ? "Approved" : "Approve"}
+                  </button>
+                  <button
+                    onClick={() => handleDelete(c._id)}
+                    className="btn btn-ghost p-2"
+                  >
+                    Deny
+                  </button>
                   <button className="btn btn-ghost p-2">Feedback</button>
                 </div>
               </td>
