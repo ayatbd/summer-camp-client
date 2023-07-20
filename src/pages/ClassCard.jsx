@@ -12,10 +12,10 @@ const ClassCard = ({ classData }) => {
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const { _id, availableSeats, image, name, className, instructorName, price } =
     classData;
-
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const handleSelectClass = (classData) => {
     console.log(classData);
@@ -30,7 +30,7 @@ const ClassCard = ({ classData }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/select", {
+      fetch("https://summer-camp-server-ten-delta.vercel.app/select", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -40,11 +40,11 @@ const ClassCard = ({ classData }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            setButtonDisabled(true); // Disable the button after successful selection
+            setButtonDisabled(true);
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Food added to the cart.",
+              title: "The class added successfully.",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -67,7 +67,7 @@ const ClassCard = ({ classData }) => {
   };
 
   return (
-    <div className="">
+    <div>
       <div>
         <div
           className={`p-1 border border-gray-300 rounded ${

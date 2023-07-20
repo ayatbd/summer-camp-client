@@ -1,79 +1,78 @@
-import { useEffect, useState, useContext } from "react";
-import { ThemeContext } from "./Home";
+import { useEffect, useState } from "react";
+import "../../index.css";
+import Tittle from "../../Components/Tittle";
+import { ScaleLoader } from "react-spinners";
 
 const PopularClasses = () => {
   const [popular, setPopular] = useState([]);
-  const isDarkMode = useContext(ThemeContext);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    setLoading(true);
+    fetch("https://summer-camp-server-ten-delta.vercel.app/class")
       .then((response) => response.json())
-      .then((data) => setPopular(data));
+      .then((data) => {
+        setPopular(data);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center h-[100vh] items-center">
+        <div>
+          {loading ? (
+            <ScaleLoader size={35} color="#123abc" loading={true} />
+          ) : (
+            <div>Content to display when not loading...</div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const sortedCards = popular
     .sort((a, b) => b.availableSeats - a.availableSeats)
     .slice(0, 6);
 
   return (
-    <div className="bg-slate-400 p-24">
-      <div className="text-center">
-        <div className="flex justify-center w-full border-opacity-50">
-          <div className="divider w-96"></div>
-        </div>
-        <h3
-          className={`text-bold text-4xl ${
-            isDarkMode ? "text-white" : "text-black"
-          }`}
-        >
-          Popular Classes
-        </h3>
-        <div className="flex justify-center w-full border-opacity-50">
-          <div className="divider w-96"></div>
-        </div>
-      </div>
-      <div className="grid grid-cols-3 gap-4 mt-14">
+    <div className="py-24 bg-[#f5f6f9]">
+      <Tittle subTitle="Best Selling" title="Popular Classes"></Tittle>
+      <div
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        className="grid overflow-hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-14"
+      >
         {sortedCards.map((p) => (
           <div
             key={p._id}
-            className={`border-2 rounded ${
-              p.availableSeats === 0
-                ? "bg-red-200"
-                : isDarkMode
-                ? "bg-gray-900 text-white"
-                : "bg-white"
+            className={`border-2 group overflow-hidden rounded-lg w-full custom-cls-2 ${
+              p.availableSeats === 0 ? "bg-red-200" : "bg-white"
             }`}
           >
-            <img
-              src={p.image}
-              alt={p.name}
-              className="w-full h-40 object-cover"
-            />
-            <div
-              className={`p-3 ${isDarkMode ? "bg-gray-900" : "bg-teal-200"}`}
-            >
-              <h3
-                className={`text-lg font-bold ${
-                  isDarkMode ? "text-white" : "text-black"
-                }`}
-              >
-                {p.className}
-              </h3>
-              <p
-                className={`text-gray-500 ${isDarkMode ? "text-gray-300" : ""}`}
-              >
-                Instructor: {p.instructorName}
-              </p>
-              <p
-                className={`text-gray-500 ${isDarkMode ? "text-gray-300" : ""}`}
-              >
-                Available Seats: {p.availableSeats}
-              </p>
-              <p
-                className={`text-gray-500 ${isDarkMode ? "text-gray-300" : ""}`}
-              >
-                Price: ${p.price}
-              </p>
+            <div className="overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.name}
+                className="w-full object-cover group-hover:scale-125 transition duration-700 ease-in-out h-60"
+              />
+            </div>
+            <div className="p-6 space-y-2 overflow-hidden bg-teal-200">
+              <div className="mb-2 space-y-2">
+                <h3 className="text-lg font-bold text-black">{p.className}</h3>
+                <p className="text-black">
+                  <strong>Instructor:</strong> {p.instructorName}
+                </p>
+                <p className="text-black">
+                  <strong>Available Seats:</strong> {p.availableSeats}
+                </p>
+                <p className="text-black">
+                  <strong>Price:</strong> ${p.price}
+                </p>
+              </div>
+              <button className="invisible bg-blue-600 text-white py-2 px-8 hover:bg-blue-800 custom-cls-3 animate-bounce">
+                Select
+              </button>
             </div>
           </div>
         ))}

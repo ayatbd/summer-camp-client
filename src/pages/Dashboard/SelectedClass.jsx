@@ -3,18 +3,40 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { ScaleLoader } from "react-spinners";
 
 const SelectedClass = () => {
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   useEffect(() => {
-    fetch(`http://localhost:5000/select?email=${user.email}`)
+    setLoading(true);
+    fetch(
+      `https://summer-camp-server-ten-delta.vercel.app/select?email=${user.email}`
+    )
       .then((response) => response.json())
-      .then((data) => setSelectedClasses(data))
+      .then((data) => {
+        setSelectedClasses(data);
+        setLoading(false);
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center h-[100vh] items-center">
+        <div>
+          {loading ? (
+            <ScaleLoader size={35} color="#123abc" loading={true} />
+          ) : (
+            <div>Content to display when not loading...</div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const handleDelete = (_id) => {
     console.log(_id);
@@ -28,7 +50,7 @@ const SelectedClass = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/select/${_id}`, {
+        fetch(`https://summer-camp-server-ten-delta.vercel.app/select/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -73,7 +95,7 @@ const SelectedClass = () => {
               <td>
                 <div className="flex gap-1">
                   <Link to="/dashboard/payment">
-                    <button className="btn p-2">Pay</button>
+                    <button className="btn p-2">Pay Now</button>
                   </Link>
                   <button
                     onClick={() => handleDelete(c._id)}

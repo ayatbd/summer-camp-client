@@ -1,24 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './routes/Router.jsx'
-import AuthProvider from './provider/AuthProvider'
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/Router.jsx";
+import AuthProvider from "./provider/AuthProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ThemeProviders from "./ThemeProviders";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
+    <ThemeProviders>
+      <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <div>
             <RouterProvider router={router} />
           </div>
         </QueryClientProvider>
-    </AuthProvider>
-  </React.StrictMode>,
-)
+      </AuthProvider>
+    </ThemeProviders>
+  </React.StrictMode>
+);

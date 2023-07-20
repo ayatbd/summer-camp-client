@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
+import { ScaleLoader } from "react-spinners";
 
 export const AuthContext = createContext(null);
 
@@ -57,7 +58,7 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://summer-camp-server-ten-delta.vercel.app/jwt", {
             email: currentUser.email,
           })
           .then((data) => {
@@ -77,8 +78,14 @@ const AuthProvider = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center">
-        <progress className="progress w-56 top-40"></progress>
+      <div className="flex justify-center h-[100vh] items-center">
+        <div>
+          {loading ? (
+            <ScaleLoader size={35} color="#123abc" loading={true} />
+          ) : (
+            <div>Content to display when not loading...</div>
+          )}
+        </div>
       </div>
     );
   }
@@ -86,6 +93,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     createUser,
     signIn,
     googleSignIn,

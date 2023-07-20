@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -6,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 const Register = () => {
   const [passwordError, setPasswordError] = useState("");
 
-  const { createUser } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
   const Navigate = useNavigate();
   const location = useLocation();
 
@@ -22,7 +23,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const saveUser = { name, email };
-        fetch("http://localhost:5000/users", {
+        fetch("https://summer-camp-server-ten-delta.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

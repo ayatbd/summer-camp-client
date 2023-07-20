@@ -18,6 +18,7 @@ import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRout";
 import StudentRoute from "./StudentRoute";
 import ErrorPage from "./../pages/ErrorPage";
+import DashboardHome from "../pages/Dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "home",
+        element: <DashboardHome></DashboardHome>,
+      },
       {
         path: "selectedclass",
         element: (

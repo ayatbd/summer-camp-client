@@ -49,7 +49,7 @@ const Login = () => {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
       };
-      fetch("http://localhost:5000/users", {
+      fetch("https://summer-camp-server-ten-delta.vercel.app/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -59,7 +59,7 @@ const Login = () => {
         .then((res) => res.json())
         .then(() => {
           Swal.fire({
-            position: "top-end",
+            position: "top-center",
             icon: "success",
             title: "User logged in successfully.",
             showConfirmButton: false,
@@ -75,7 +75,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center md:min-h-screen bg-gray-100">
       <div className="max-w-md w-full mx-auto p-6 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-bold mb-6">Login</h2>
         <form onSubmit={handleLogin}>

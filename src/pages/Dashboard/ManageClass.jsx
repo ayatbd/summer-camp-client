@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import { ScaleLoader } from "react-spinners";
 import Swal from "sweetalert2";
 
 const ManageClass = () => {
   const [classData, setClassData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    setLoading(true);
+    fetch("https://summer-camp-server-ten-delta.vercel.app/class")
       .then((response) => response.json())
-      .then((data) => setClassData(data));
+      .then((data) => {
+        setClassData(data);
+        setLoading(false);
+      });
   }, []);
 
   const handleDelete = (id) => {
@@ -21,7 +27,7 @@ const ManageClass = () => {
       confirmButtonText: "Yes, Deny it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/class/${id}`, {
+        fetch(`https://summer-camp-server-ten-delta.vercel.app/class/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -36,6 +42,20 @@ const ManageClass = () => {
       }
     });
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center h-[100vh] items-center">
+        <div>
+          {loading ? (
+            <ScaleLoader size={35} color="#123abc" loading={true} />
+          ) : (
+            <div>Content to display when not loading...</div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const handleApprove = (id) => {
     Swal.fire("Approved!", "Your class has been approved.", "success");
@@ -77,7 +97,7 @@ const ManageClass = () => {
               </td>
               <td>{c.className}</td>
               <td>{c.instructorName}</td>
-              <td>{c.instructorEmail}</td>
+              <td>{c.email}</td>
               <td>{c.availableSeats}</td>
               <td>{c.price}</td>
               <td>

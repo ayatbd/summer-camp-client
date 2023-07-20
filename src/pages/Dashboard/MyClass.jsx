@@ -7,7 +7,9 @@ const MyClass = () => {
   const [myClass, setMyClass] = useState([]);
   const { user } = useAuth();
   useEffect(() => {
-    fetch(`http://localhost:5000/class?email=${user.email}`)
+    fetch(
+      `https://summer-camp-server-ten-delta.vercel.app/class?email=${user.email}`
+    )
       .then((response) => response.json())
       .then((data) => setMyClass(data))
       .catch((error) => {
@@ -27,7 +29,7 @@ const MyClass = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/select/${_id}`, {
+        fetch(`https://summer-camp-server-ten-delta.vercel.app/select/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -51,6 +53,7 @@ const MyClass = () => {
             <th>Class Name</th>
             <th>Available Seats</th>
             <th>Price</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

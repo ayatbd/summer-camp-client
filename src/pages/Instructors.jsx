@@ -1,35 +1,70 @@
 import { useEffect, useState } from "react";
-
+import { ScaleLoader } from "react-spinners";
+import PagesBanner from "../Components/PagesBanner";
+import Tittle from "../Components/Tittle";
+import img from "../assets/images/img20.png";
+import { FaEnvelope } from "react-icons/fa";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    setLoading(true);
+    fetch("https://summer-camp-server-ten-delta.vercel.app/class")
       .then((response) => response.json())
-      .then((data) => setInstructors(data));
+      .then((data) => {
+        setInstructors(data);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) {
     return (
-        <div className="my-20">
-          <h2 className="text-2xl font-bold mb-4">Instructors</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {instructors.map((instructor) => (
-              <div
-                key={instructor.id}
-                className='p-4  border border-gray-300 rounded bg-red-200'
-              >
-                <img
-                  src={instructor.image}
-                  alt={instructor.name}
-                  className="w-full h-40 object-cover mb-4"
-                />
-                <h3 className="text-lg font-bold">{instructor.instructorName}</h3>
-                <p className="text-gray-500">Instructor: {instructor.instructorEmail}</p>
-              </div>
-            ))}
-          </div>
+      <div className="flex justify-center h-[100vh] items-center">
+        <div>
+          {loading ? (
+            <ScaleLoader size={35} color="#123abc" loading={true} />
+          ) : (
+            <div>Content to display when not loading...</div>
+          )}
         </div>
+      </div>
     );
+  }
+  return (
+    <div className="">
+      <PagesBanner img={img} title="Choose Your Best Tutor"></PagesBanner>
+      <div className="my-10 grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden">
+        {instructors.map((instructor) => (
+          <div
+            key={instructor.id}
+            className="p-5 h-72 overflow-hidden flex justify-between items-center gap-7 border border-gray-300 rounded"
+          >
+            <div className="w-2/5 h-full">
+              <img
+                src={instructor.image}
+                alt={instructor.name}
+                className="w-full object-center h-full object-cover"
+              />
+            </div>
+            <div className="w-3/5 flex flex-col justify-start items-start space-y-2">
+              <h3 className="text-2xl font-bold">
+                Name: {instructor.instructorName}
+              </h3>
+              <p className="flex justify-center items-center gap-2">
+                <FaEnvelope className="w-4 h-4 text-red-500"></FaEnvelope>
+                {instructor.email}
+              </p>
+              <p>Total Classes: </p>
+              <p>Total Students: </p>
+              <button className="btn btn-accent">See All Classes</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Instructors;

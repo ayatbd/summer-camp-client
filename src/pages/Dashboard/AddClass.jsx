@@ -70,7 +70,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-20">
+    <div className="max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Add a Class</h1>
       <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
         <div className="mb-4">
