@@ -5,9 +5,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useInstructor from "../hooks/useInstructor";
 import useAdmin from "../hooks/useAdmin";
+import "../index.css";
 
 const ClassCard = ({ classData }) => {
   const { user } = useContext(AuthContext);
+
   const location = useLocation();
   const navigate = useNavigate();
   const [isAdmin] = useAdmin();
@@ -67,40 +69,47 @@ const ClassCard = ({ classData }) => {
   };
 
   return (
-    <div>
-      <div>
-        <div
-          className={`p-1 border border-gray-300 rounded ${
-            availableSeats === 0 ? "bg-red-500" : "bg-white"
+    <div
+      className={`p-1 group border custom-cls-2 border-gray-300 rounded ${
+        availableSeats === 0 ? "bg-red-500" : "bg-white"
+      }`}
+    >
+      <div className="overflow-hidden">
+        <img
+          src={image}
+          alt={name}
+          className="w-full object-cover group-hover:scale-125 transition duration-700 ease-in-out h-60"
+        />
+      </div>
+      <div className="p-6 space-y-2 overflow-hidden bg-teal-200">
+        <div className="mb-2 space-y-2">
+          <h3 className="text-lg font-bold text-black">{className}</h3>
+          <p className="text-black">
+            <strong>Instructor:</strong> {instructorName}
+          </p>
+          <p className="text-black">
+            <strong>Available Seats:</strong> {availableSeats}
+          </p>
+          <p className="text-black">
+            <strong>Price:</strong> ${price}
+          </p>
+        </div>
+        <button
+          onClick={() => handleSelectClass(classData)}
+          disabled={
+            availableSeats === 0 || buttonDisabled || isAdmin || isInstructor
+          }
+          className={`md:invisible bg-blue-600 text-white py-2 px-8 hover:bg-blue-800 custom-cls-3 animate-bounce ${
+            availableSeats === 0 || buttonDisabled || isAdmin || isInstructor
+              ? "opacity-50 cursor-not-allowed animate-none"
+              : ""
           }`}
         >
-          <img src={image} alt={name} className="w-full h-40 object-cover" />
-          <div className="bg-teal-200 p-1 mt-1">
-            <h3 className="text-lg font-bold">{className}</h3>
-            <p className="text-gray-500">Instructor: {instructorName}</p>
-            <p className="text-gray-500">Available Seats: {availableSeats}</p>
-            <p className="text-gray-500">Price: ${price}</p>
-            <button
-              onClick={() => handleSelectClass(classData)}
-              disabled={
-                availableSeats === 0 ||
-                buttonDisabled ||
-                isAdmin ||
-                isInstructor
-              }
-              className={`btn btn-accent ${
-                availableSeats === 0 ||
-                buttonDisabled ||
-                isAdmin ||
-                isInstructor
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
-            >
-              {buttonDisabled ? "Selected" : "Select"}
-            </button>
-          </div>
-        </div>
+          {buttonDisabled ? "Selected" : "Select"}
+        </button>
+        {/* <button className="invisible bg-blue-600 text-white py-2 px-8 hover:bg-blue-800 custom-cls-3 animate-bounce">
+          Select
+        </button> */}
       </div>
     </div>
   );

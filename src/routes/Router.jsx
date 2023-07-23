@@ -18,7 +18,7 @@ import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRout";
 import StudentRoute from "./StudentRoute";
 import ErrorPage from "./../pages/ErrorPage";
-import DashboardHome from "../pages/Dashboard/DashboardHome";
+import DashboardHome from "./../layouts/Dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
   {

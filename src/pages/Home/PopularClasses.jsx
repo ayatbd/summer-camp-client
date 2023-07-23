@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../index.css";
 import Tittle from "../../Components/Tittle";
-import { ScaleLoader } from "react-spinners";
+import Loader from "../Shared/Loader";
 
 const PopularClasses = () => {
   const [popular, setPopular] = useState([]);
@@ -18,17 +18,7 @@ const PopularClasses = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   const sortedCards = popular

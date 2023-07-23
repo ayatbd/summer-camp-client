@@ -13,6 +13,7 @@ import {
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
 import { ScaleLoader } from "react-spinners";
+import Loader from "../pages/Shared/Loader";
 
 export const AuthContext = createContext(null);
 
@@ -77,17 +78,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   const authInfo = {

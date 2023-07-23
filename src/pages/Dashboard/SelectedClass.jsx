@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { ScaleLoader } from "react-spinners";
+import Loader from "../Shared/Loader";
 
 const SelectedClass = () => {
   const [selectedClasses, setSelectedClasses] = useState([]);
@@ -17,6 +17,7 @@ const SelectedClass = () => {
       .then((response) => response.json())
       .then((data) => {
         setSelectedClasses(data);
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -25,17 +26,7 @@ const SelectedClass = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   const handleDelete = (_id) => {
@@ -68,47 +59,54 @@ const SelectedClass = () => {
 
   return (
     <div className="overflow-x-auto w-full">
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>Pictur</th>
-            <th>Class Name</th>
-            <th>Istructor Name</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedClasses.map((c) => (
-            <tr key={c._id}>
-              <td>
-                <div className="flex items-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={c.image} />
+      {selectedClasses.length !== 0 ? (
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Pictur</th>
+              <th>Class Name</th>
+              <th>Istructor Name</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedClasses.map((c) => (
+              <tr key={c._id}>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={c.image} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </td>
-              <td>{c.className}</td>
-              <td>{c.instructorName}</td>
-              <td>{c.price}</td>
-              <td>
-                <div className="flex gap-1">
-                  <Link to="/dashboard/payment">
-                    <button className="btn p-2">Pay Now</button>
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(c._id)}
-                    className="btn text-red-400 p-2"
-                  >
-                    <AiFillDelete size={24} />
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                </td>
+                <td>{c.className}</td>
+                <td>{c.instructorName}</td>
+                <td>{c.price}</td>
+                <td>
+                  <div className="flex gap-1">
+                    <Link to="/dashboard/payment">
+                      <button className="btn p-2">Pay Now</button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(c._id)}
+                      className="btn text-red-400 p-2"
+                    >
+                      <AiFillDelete size={24} />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <h2 className="text-center mt-5 text-2xl">
+          There is no any selected class
+        </h2>
+      )}
     </div>
   );
 };

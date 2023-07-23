@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import { ThemeContext } from "../../ThemeProviders";
 import Tittle from "../../Components/Tittle";
-import { ScaleLoader } from "react-spinners";
+import Loader from "../Shared/Loader";
+import { ThemeContext } from "../../provider/ThemeProviders";
 
 const PopularInstructors = () => {
   const [popular, setPopular] = useState([]);
@@ -19,17 +19,7 @@ const PopularInstructors = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (

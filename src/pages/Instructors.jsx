@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { ScaleLoader } from "react-spinners";
 import PagesBanner from "../Components/PagesBanner";
-import Tittle from "../Components/Tittle";
 import img from "../assets/images/img20.png";
 import { FaEnvelope } from "react-icons/fa";
+import Loader from "./Shared/Loader";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
@@ -20,17 +19,7 @@ const Instructors = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div className="">
@@ -38,7 +27,7 @@ const Instructors = () => {
       <div className="my-10 grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden">
         {instructors.map((instructor) => (
           <div
-            key={instructor.id}
+            key={instructor._id}
             className="p-5 h-72 overflow-hidden flex justify-between items-center gap-7 border border-gray-300 rounded"
           >
             <div className="w-2/5 h-full">

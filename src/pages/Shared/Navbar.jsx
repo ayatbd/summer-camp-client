@@ -78,14 +78,27 @@ const Navbar = () => {
                 Dashboard
               </Link>
             </li>
-            <li>
-              <button className="font-bold" onClick={handleLogOut}>
-                Logout
-              </button>
-            </li>
+            {user ? (
+              <li>
+                <button className="font-bold" onClick={handleLogOut}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login" className="font-bold">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <Link className="ml-2 text-white font-bold normal-case text-xl hidden md:inline">
+          LingoStars
+        </Link>
+      </div>
+      <div className="md:hidden">
+        <Link className=" text-white font-bold normal-case text-xl">
           LingoStars
         </Link>
       </div>
@@ -114,7 +127,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/login"
-                className="text-white font-medium py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-700"
+                className="text-white hidden md:block font-medium py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-700"
               >
                 Login
               </Link>
@@ -195,15 +208,27 @@ const Navbar = () => {
             </div>
             {isDarkMode ? (
               <BsMoonStarsFill
-                className={`w-7 h-7 ${
-                  isDarkMode ? "text-white" : "text-gray-700"
+                className={`w-6 h-6 hover:cursor-pointer ${
+                  isDarkMode
+                    ? "text-white"
+                    : `${
+                        location.pathname === "/"
+                          ? "text-white"
+                          : "text-gray-900"
+                      }`
                 }`}
                 onClick={toggleTheme}
               ></BsMoonStarsFill>
             ) : (
               <BsFillBrightnessHighFill
-                className={`w-7 h-7 ${
-                  isDarkMode ? "text-white" : "text-gray-700"
+                className={`w-6 h-6 hover:cursor-pointer ${
+                  isDarkMode
+                    ? "text-white"
+                    : `${
+                        location.pathname === "/"
+                          ? "text-white"
+                          : "text-gray-900"
+                      }`
                 }`}
                 onClick={toggleTheme}
               ></BsFillBrightnessHighFill>

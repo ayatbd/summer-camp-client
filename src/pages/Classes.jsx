@@ -4,6 +4,7 @@ import { ScaleLoader } from "react-spinners";
 import Tittle from "../Components/Tittle";
 import PagesBanner from "../Components/PagesBanner";
 import img from "../assets/images/img19.png";
+import Loader from "./Shared/Loader";
 
 const Classes = () => {
   const [classDatas, setClassData] = useState([]);
@@ -20,23 +21,13 @@ const Classes = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
     <div className="">
       <PagesBanner img={img} title="All Classes"></PagesBanner>
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid overflow-hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 my-14">
         {classDatas.map((classData) => (
           <ClassCard key={classData._id} classData={classData}></ClassCard>
         ))}

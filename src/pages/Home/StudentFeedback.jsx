@@ -18,9 +18,13 @@ const StudentFeedback = () => {
         data-aos-duration="1000"
         className="grid md:grid-cols-3 gap-9 mt-10"
       >
-        <div className="p-8 space-y-6 flex justify-center flex-col items-center rounded-se-3xl rounded-es-3xl border-[1px] border-gray-500/100">
+        <div
+          style={{ borderRadius: "100px 0px 100px 0px" }}
+          className="p-5 space-y-3 flex justify-center flex-col items-center border-[1px] border-gray-500/100"
+        >
           <img
-            className="w-[100px] h-[100px] rounded-se-3xl rounded-es-3xl"
+            style={{ borderRadius: "0 200px 200px 200px" }}
+            className="w-[100px] h-[100px]"
             src={img1}
             alt=""
           />
@@ -32,8 +36,12 @@ const StudentFeedback = () => {
             <h5 className="text-blue-600 font-bold text-xl">Josef</h5>
           </div>
         </div>
-        <div className="p-8 space-y-6 flex justify-center flex-col items-center rounded-se-3xl rounded-es-3xl border-[1px] border-gray-500/100">
+        <div
+          style={{ borderRadius: "100px 0px 100px 0px" }}
+          className="p-5 space-y-3 flex justify-center flex-col items-center rounded-se-3xl rounded-es-3xl border-[1px] border-gray-500/100"
+        >
           <img
+            style={{ borderRadius: "0 200px 200px 200px" }}
             className="w-[100px] h-[100px] rounded-se-3xl rounded-es-3xl"
             src={img2}
             alt=""
@@ -46,8 +54,12 @@ const StudentFeedback = () => {
             <h5 className="text-blue-600 font-bold text-xl">Sarah</h5>
           </div>
         </div>
-        <div className="p-8 space-y-6 flex justify-center flex-col items-center rounded-se-3xl rounded-es-3xl border-[1px] border-gray-500/100">
+        <div
+          style={{ borderRadius: "100px 0px 100px 0px" }}
+          className="p-5 space-y-3 flex justify-center flex-col items-center rounded-se-3xl rounded-es-3xl border-[1px] border-gray-500/100"
+        >
           <img
+            style={{ borderRadius: "0 200px 200px 200px" }}
             className="w-[100px] h-[100px] rounded-se-3xl rounded-es-3xl"
             src={img3}
             alt=""

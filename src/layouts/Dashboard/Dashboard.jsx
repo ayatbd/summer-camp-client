@@ -8,6 +8,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import useStudent from "../../hooks/useStudent";
 import useAuth from "../../hooks/useAuth";
+import Container from "./../../pages/Container";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -21,7 +22,7 @@ const Dashboard = () => {
       <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content w-full h-full p-8 flex flex-col justify-between bg-white">
+        <div className="drawer-content inset-0/ py-5 w-full flex flex-col justify-between bg-white">
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
