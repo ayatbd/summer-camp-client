@@ -12,7 +12,6 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
-import { ScaleLoader } from "react-spinners";
 import Loader from "../pages/Shared/Loader";
 
 export const AuthContext = createContext(null);

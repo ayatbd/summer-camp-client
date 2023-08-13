@@ -103,7 +103,7 @@ const ManageClass = () => {
               <td>
                 <div className="flex">
                   <button
-                    className="btn btn-ghost p-2"
+                    className="btn btn-success rounded-full"
                     disabled={c.status === "approved"}
                     onClick={() => handleApprove(c._id)}
                   >
@@ -111,11 +111,13 @@ const ManageClass = () => {
                   </button>
                   <button
                     onClick={() => handleDelete(c._id)}
-                    className="btn btn-ghost p-2"
+                    className="btn btn-secondary rounded-full"
                   >
                     Deny
                   </button>
-                  <button className="btn btn-ghost p-2">Feedback</button>
+                  <button className="btn btn-info rounded-full">
+                    Feedback
+                  </button>
                 </div>
               </td>
             </tr>

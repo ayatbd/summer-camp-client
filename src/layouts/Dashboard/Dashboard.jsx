@@ -1,14 +1,14 @@
 import { FaChalkboardTeacher, FaLeanpub, FaUserFriends } from "react-icons/fa";
 import { BiSelectMultiple } from "react-icons/bi";
 import { SiGoogleclassroom } from "react-icons/si";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { MdOutlinePayment } from "react-icons/md";
+import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../../pages/Shared/Navbar";
 import Footer from "../../pages/Shared/Footer";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import useStudent from "../../hooks/useStudent";
 import useAuth from "../../hooks/useAuth";
-import Container from "./../../pages/Container";
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -33,7 +33,7 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side bg-indigo-500">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <div className="mt-3">
+          <div className="mt-3 hidden md:block">
             <img
               className="w-[150px] h-[150px] rounded-full mx-auto"
               src={user?.photoURL}
@@ -62,8 +62,15 @@ const Dashboard = () => {
                     to="/dashboard/enrolledclass"
                     className="font-bold text-white"
                   >
-                    {" "}
                     <SiGoogleclassroom></SiGoogleclassroom> My Enrolled Classes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/payhistory"
+                    className="font-bold text-white"
+                  >
+                    <MdOutlinePayment></MdOutlinePayment> Payment History
                   </NavLink>
                 </li>
               </>

@@ -1,11 +1,11 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import Tittle from "../../Components/Tittle";
 import Loader from "../Shared/Loader";
-import { ThemeContext } from "../../provider/ThemeProviders";
+import useTheme from "../../hooks/useTheme";
 
 const PopularInstructors = () => {
   const [popular, setPopular] = useState([]);
-  const isDarkMode = useContext(ThemeContext);
+  const { isDarkMode } = useTheme();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const PopularInstructors = () => {
   }
 
   return (
-    <div className="py-12 bg-[#f5f6f9]">
+    <div className={`py-12 bg-[#f5f6f9] ${isDarkMode && "bg-gray-900"}`}>
       <Tittle subTitle="Best Tutor" title="See Top Instructors"></Tittle>
       <div
         data-aos="fade-up"
@@ -33,14 +33,16 @@ const PopularInstructors = () => {
         {popular.map((p) => (
           <div
             key={p._id}
-            className="p-1 border hover:-translate-y-3 transition duration-500 ease-in-out border-gray-300 bg-teal-200 rounded"
+            className={`p-1 border hover:-translate-y-3 transition duration-500 ease-in-out border-gray-300 rounded ${
+              isDarkMode ? "bg-gray-900" : "bg-teal-200"
+            }`}
           >
             <img
               src={p.image}
               alt={p.name}
               className="w-full h-60 object-cover mb-4"
             />
-            <div className="space-y-2 p-5">
+            <div className={`space-y-2 p-5 ${isDarkMode && "text-white"}`}>
               <h3 className="text-lg font-bold">{p.instructorName}</h3>
               <p className="">
                 <strong>Instructor:</strong> {p.email}

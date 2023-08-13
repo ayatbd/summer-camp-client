@@ -34,7 +34,7 @@ const Navbar = () => {
   };
   return (
     <div
-      className={`navbar py-4 ${isDarkMode ? "bg-gray-800" : "bg-indigo-800"}`}
+      className={`navbar py-4 ${isDarkMode ? "bg-gray-700" : "bg-indigo-800"}`}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -74,7 +74,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" className="font-bold">
+              <Link to="/dashboard/home" className="font-bold">
                 Dashboard
               </Link>
             </li>
@@ -119,6 +119,11 @@ const Navbar = () => {
               Classes
             </Link>
           </li>
+          <li>
+            <Link to="/about" className="text-white font-bold">
+              About
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
@@ -127,7 +132,9 @@ const Navbar = () => {
             <li>
               <Link
                 to="/login"
-                className="text-white hidden md:block font-medium py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-700"
+                className={`text-white hidden md:block font-medium py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-700 ${
+                  isDarkMode && "bg-gray-900"
+                }`}
               >
                 Login
               </Link>
@@ -137,20 +144,18 @@ const Navbar = () => {
           <div className="flex items-center justify-center relative">
             <ul className="mr-2 gap-2 flex flex-row">
               <li>
-                <Link to="/dashboard">
-                  <button className="text-white md:flex hidden items-center gap-1 font-medium py-2 px-4 rounded-md bg-indigo-600 hover:bg-indigo-700">
+                <Link to="/dashboard/home">
+                  <button
+                    className={`text-white md:flex hidden items-center gap-1 font-medium py-2 px-4 rounded-md hover:bg-indigo-700 ${
+                      isDarkMode
+                        ? "bg-gray-800 hover:bg-gray-600"
+                        : "bg-indigo-600"
+                    }`}
+                  >
                     <RxDashboard /> Dashboard
                   </button>
                 </Link>
               </li>
-              {/* <li>
-                <button
-                  className="text-white md:hidden flex justify-center items-center gap-3 font-medium py-2 px-6 rounded-lg bg-indigo-600 hover:bg-indigo-700"
-                  onClick={handleLogOut}
-                >
-                  <FaPowerOff className="w-4 h-4"></FaPowerOff> Logout
-                </button>
-              </li> */}
             </ul>
 
             <div className="">
@@ -206,34 +211,30 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            {isDarkMode ? (
-              <BsMoonStarsFill
-                className={`w-6 h-6 hover:cursor-pointer ${
-                  isDarkMode
-                    ? "text-white"
-                    : `${
-                        location.pathname === "/"
-                          ? "text-white"
-                          : "text-gray-900"
-                      }`
-                }`}
-                onClick={toggleTheme}
-              ></BsMoonStarsFill>
-            ) : (
-              <BsFillBrightnessHighFill
-                className={`w-6 h-6 hover:cursor-pointer ${
-                  isDarkMode
-                    ? "text-white"
-                    : `${
-                        location.pathname === "/"
-                          ? "text-white"
-                          : "text-gray-900"
-                      }`
-                }`}
-                onClick={toggleTheme}
-              ></BsFillBrightnessHighFill>
-            )}
           </div>
+        )}
+        {isDarkMode ? (
+          <BsMoonStarsFill
+            className={`w-6 h-6 hover:cursor-pointer ${
+              isDarkMode
+                ? "text-white"
+                : `${
+                    location.pathname === "/" ? "text-white" : "text-gray-900"
+                  }`
+            }`}
+            onClick={toggleTheme}
+          ></BsMoonStarsFill>
+        ) : (
+          <BsFillBrightnessHighFill
+            className={`w-6 h-6 hover:cursor-pointer ${
+              isDarkMode
+                ? "text-white"
+                : `${
+                    location.pathname === "/" ? "text-white" : "text-gray-900"
+                  }`
+            }`}
+            onClick={toggleTheme}
+          ></BsFillBrightnessHighFill>
         )}
       </div>
     </div>

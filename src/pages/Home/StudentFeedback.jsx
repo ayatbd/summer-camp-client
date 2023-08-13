@@ -5,14 +5,17 @@ import img2 from "../../assets/images/img16.jpeg";
 import img3 from "../../assets/images/img17.jpeg";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import useTheme from "../../hooks/useTheme";
 
 const StudentFeedback = () => {
+  const { isDarkMode } = useTheme();
+
   useEffect(() => {
     AOS.init();
   }, []);
   return (
-    <div className="mb-28">
-      <Tittle subTitle="Best Selling" title="Popular Classes"></Tittle>
+    <div className={`pb-28 ${isDarkMode && "bg-gray-900"}`}>
+      <Tittle subTitle="Reviews" title="Our Students Feedback"></Tittle>
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
@@ -29,11 +32,17 @@ const StudentFeedback = () => {
             alt=""
           />
           <div className="text-center flex flex-col gap-2">
-            <p>
+            <p className={`${isDarkMode && "text-white"}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Vestibulum eu ligula in urna aliquam volutpat.
             </p>
-            <h5 className="text-blue-600 font-bold text-xl">Josef</h5>
+            <h5
+              className={`text-blue-600 font-bold text-xl ${
+                isDarkMode && "text-white"
+              }`}
+            >
+              Josef
+            </h5>
           </div>
         </div>
         <div
@@ -47,11 +56,17 @@ const StudentFeedback = () => {
             alt=""
           />
           <div className="text-center flex flex-col gap-2">
-            <p>
+            <p className={`${isDarkMode && "text-white"}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Vestibulum eu ligula in urna aliquam volutpat.
             </p>
-            <h5 className="text-blue-600 font-bold text-xl">Sarah</h5>
+            <h5
+              className={`text-blue-600 font-bold text-xl ${
+                isDarkMode && "text-white"
+              }`}
+            >
+              Josef
+            </h5>
           </div>
         </div>
         <div
@@ -65,11 +80,17 @@ const StudentFeedback = () => {
             alt=""
           />
           <div className="text-center flex flex-col gap-2">
-            <p>
+            <p className={`${isDarkMode && "text-white"}`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Vestibulum eu ligula in urna aliquam volutpat.
             </p>
-            <h5 className="text-blue-600 font-bold text-xl">Josef</h5>
+            <h5
+              className={`text-blue-600 font-bold text-xl ${
+                isDarkMode && "text-white"
+              }`}
+            >
+              Josef
+            </h5>
           </div>
         </div>
       </div>

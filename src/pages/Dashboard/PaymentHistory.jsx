@@ -1,11 +1,11 @@
-const EnrolledClass = () => {
+const PaymentHistory = () => {
   return (
     <div>
       <div className="text-center">
         <div className="flex justify-center w-full border-opacity-50">
           <div className="divider w-96"></div>
         </div>
-        <h3 className="text-center text-3xl">Enrolled Classes</h3>
+        <h3 className="text-center text-3xl">Payment History</h3>
         <div className="flex justify-center w-full border-opacity-50">
           <div className="divider w-96"></div>
         </div>
@@ -14,4 +14,4 @@ const EnrolledClass = () => {
   );
 };
 
-export default EnrolledClass;
+export default PaymentHistory;

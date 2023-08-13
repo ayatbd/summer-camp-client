@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Loader from "../Shared/Loader";
 
@@ -48,7 +47,13 @@ const SelectedClass = () => {
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
-              Swal.fire("Deleted!", "Your class has been deleted.", "success");
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "The class deleted successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
               const remaining = selectedClasses.filter((c) => c._id !== _id);
               setSelectedClasses(remaining);
             }
@@ -88,13 +93,15 @@ const SelectedClass = () => {
                 <td>
                   <div className="flex gap-1">
                     <Link to="/dashboard/payment">
-                      <button className="btn p-2">Pay Now</button>
+                      <button className="btn-accent rounded-full px-5 py-2">
+                        Pay Now
+                      </button>
                     </Link>
                     <button
                       onClick={() => handleDelete(c._id)}
-                      className="btn text-red-400 p-2"
+                      className="px-5 py-2 rounded-full  btn-error p-2"
                     >
-                      <AiFillDelete size={24} />
+                      Delete
                     </button>
                   </div>
                 </td>

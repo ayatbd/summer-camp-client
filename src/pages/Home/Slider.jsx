@@ -30,7 +30,7 @@ const Slider = () => {
               ❯
             </a>
           </div>
-          <div className="p-4 hidden md:block md:p-8 lg:p-10 md:w-[600px] text-white rounded absolute text-black top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-left">
+          <div className="p-4 hidden md:block md:p-8 lg:p-10 md:w-[600px] text-white rounded absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-left">
             <h2 className="font-bold text-lg sm:text-2xl md:text-3xl lg:text-4xl">
               Develop your language skill now..
             </h2>

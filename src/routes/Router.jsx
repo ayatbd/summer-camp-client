@@ -19,6 +19,9 @@ import InstructorRoute from "./InstructorRout";
 import StudentRoute from "./StudentRoute";
 import ErrorPage from "./../pages/ErrorPage";
 import DashboardHome from "./../layouts/Dashboard/DashboardHome";
+import Payment from "../pages/Dashboard/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import About from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +57,10 @@ export const router = createBrowserRouter([
         path: "instructors",
         element: <Instructors></Instructors>,
       },
+      {
+        path: "about",
+        element: <About></About>,
+      },
     ],
   },
   {
@@ -70,6 +77,22 @@ export const router = createBrowserRouter([
         element: (
           <StudentRoute>
             <SelectedClass></SelectedClass>
+          </StudentRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <StudentRoute>
+            <Payment></Payment>
+          </StudentRoute>
+        ),
+      },
+      {
+        path: "payhistory",
+        element: (
+          <StudentRoute>
+            <PaymentHistory></PaymentHistory>
           </StudentRoute>
         ),
       },

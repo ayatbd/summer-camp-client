@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
-import { ScaleLoader } from "react-spinners";
-import Tittle from "../Components/Tittle";
 import PagesBanner from "../Components/PagesBanner";
 import img from "../assets/images/img19.png";
 import Loader from "./Shared/Loader";
