@@ -11,4 +11,4 @@
   <li>Payment Processing and History: The project integrates a payment processing system that allows users to securely make payments for their selected classes. It also maintains a payment history page where users can view their past payment transactions, providing transparency and record-keeping.</li>
 </ul>
 <p>Server site link: <Link>https://github.com/ayatbd/summer-camp-server</Link></p>
-<hr />
+</hr>
