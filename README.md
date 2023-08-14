@@ -10,5 +10,6 @@
   <li>Admin Controls and Class Management: The admin has comprehensive controls over the system, including the ability to approve or deny class requests, send feedback to instructors, manage user roles, and oversee the overall functioning of the platform. The admin dashboard provides a centralized interface for efficient class and user management.</li>
   <li>Payment Processing and History: The project integrates a payment processing system that allows users to securely make payments for their selected classes. It also maintains a payment history page where users can view their past payment transactions, providing transparency and record-keeping.</li>
 </ul>
-<p>Server site link: <Link>https://github.com/ayatbd/summer-camp-server</Link></p>
 </hr>
+<p>Server site link: <Link>https://github.com/ayatbd/summer-camp-server</Link></p>
+
