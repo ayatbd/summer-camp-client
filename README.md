@@ -1,1 +1,1 @@
-# summer-camp-client
+# Lingo Star
