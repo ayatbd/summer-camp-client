@@ -1,2 +1,2 @@
 # Lingo Star
-<p>1. the awesome website</p>
+<p>Server site link: <a>https://github.com/ayatbd/summer-camp-server</a></p>
