@@ -1,4 +1,4 @@
-# Lingo Star
+# LingoStar
 <h2>Below are the features of MasteryKarate website
 </h2>
 <ul>
