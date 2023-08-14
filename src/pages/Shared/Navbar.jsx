@@ -189,20 +189,9 @@ const Navbar = () => {
                     <h1 className="text-base font-bold">
                       Name: {user?.displayName}
                     </h1>
-                    <p className="text-xs mt-3">Email: {user?.email}</p>
-                    <p
-                      className={
-                        user?.emailVerified
-                          ? "text-xs text-gray-950 my-2"
-                          : "text-xs text-red-500 my-2"
-                      }
-                    >
-                      {user?.emailVerified
-                        ? "Your Email has been verified!"
-                        : "Your Email is not verified!"}
-                    </p>
+                    <p className="text-xs my-3">Email: {user?.email}</p>
                     <button
-                      className="text-white flex justify-center items-center gap-3 font-medium py-2 px-6 rounded-lg bg-indigo-600 hover:bg-indigo-700"
+                      className="text-white flex justify-center items-center gap-3 font-medium py-2 px-6 rounded-full bg-indigo-600 hover:bg-indigo-700"
                       onClick={handleLogOut}
                     >
                       <FaPowerOff className="w-4 h-4"></FaPowerOff> Logout

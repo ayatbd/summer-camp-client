@@ -1,8 +1,8 @@
-import useTheme from "../../../../hooks/useTheme";
-import MiniService from "../../../../components/MiniSerForAboutUs/MiniService";
-import ButtonFill from "../../../../components/ButtonFill/ButtonFill";
 import { Link } from "react-router-dom";
-import ButtonOutline from "../../../../components/ButtonOutline/ButtonOutline";
+import useTheme from "../hooks/useTheme";
+import MiniService from "./MiniService";
+import ButtonOutline from "./ButtonOutline";
+import img1 from "../assets/images/img22.jpeg";
 
 const AboutUs = () => {
   const { isDarkMode } = useTheme();
@@ -11,10 +11,10 @@ const AboutUs = () => {
       <div className="grid lg:grid-cols-2 md:gap-2">
         <div className=" relative p-3">
           <div className="w-[75%] h-[80%] hidden lg:block bg-red-100 rounded-xl absolute top-7  left-7"></div>
-          <div className="hidden lg:block md:w-[75%] md:h-[80%] rounded-xl md:absolute top-0  left-0 bg-[url('https://i.ibb.co/xH1rQKc/about-img-4.jpg')] bg-cover"></div>
+          <div className="hidden lg:block md:w-[75%] md:h-[80%] rounded-xl md:absolute top-0  left-0 bg-[url('https://i.ibb.co/w0SyWYJ/img22.jpg')] bg-cover"></div>
           <img
-            src="https://i.ibb.co/GpnNjN8/about-img-5.jpg"
-            className="lg:h-[70%] mx-auto rounded-full lg:absolute bottom-0  right-14 "
+            src="https://i.ibb.co/9N5dtqv/img21.jpg"
+            className="w-[380px] h-[380px] mx-auto rounded-full lg:absolute bottom-0 right-14 "
           ></img>
         </div>
         <div className="space-y-4 px-2 md:px-0">
