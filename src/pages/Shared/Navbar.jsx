@@ -94,12 +94,12 @@ const Navbar = () => {
           </ul>
         </div>
         <Link className="ml-2 text-white font-bold normal-case text-xl hidden md:inline">
-          LingoStars
+          Global<span className="text-red-500">Tongues</span>
         </Link>
       </div>
       <div className="md:hidden">
         <Link className=" text-white font-bold normal-case text-xl">
-          LingoStars
+          Global <span className="text-red-500">Tongues</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

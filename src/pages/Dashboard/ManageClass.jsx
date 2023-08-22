@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ScaleLoader } from "react-spinners";
 import Swal from "sweetalert2";
+import Loader from "../Shared/Loader";
 
 const ManageClass = () => {
   const [classData, setClassData] = useState([]);
@@ -44,17 +45,7 @@ const ManageClass = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex justify-center h-[100vh] items-center">
-        <div>
-          {loading ? (
-            <ScaleLoader size={35} color="#123abc" loading={true} />
-          ) : (
-            <div>Content to display when not loading...</div>
-          )}
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   const handleApprove = (id) => {

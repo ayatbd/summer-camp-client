@@ -28,7 +28,7 @@ const PopularInstructors = () => {
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        className="my-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10"
+        className="my-14 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-10"
       >
         {popular.map((p) => (
           <div

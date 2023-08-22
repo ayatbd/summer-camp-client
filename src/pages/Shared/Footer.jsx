@@ -15,7 +15,7 @@ const Footer = () => {
           <div className="flex flex-col  items-center gap-2">
             <img className="w-8 md:w-16" src={img1} alt="" />
             <h1 className="text-xl md:text-3xl font-kanit font-extrabold text-white">
-              Lingo<span className="text-primary">Stars</span>
+              Global<span className="text-primary">Tongues</span>
             </h1>
             <p className="text-white md:text-lg mt-3 md:mt-7 ">Address</p>
             <p className="text-[#b8b8b8] max-w-[250px] text-center">
@@ -106,7 +106,7 @@ const Footer = () => {
         </div>
         <p className="text-white text-base text-center my-4">
           &#169; All right reserved by{" "}
-          <span className="text-primary">LingoStars</span>
+          <span className="text-primary">GlobalTongues</span>
         </p>
       </div>
     </div>

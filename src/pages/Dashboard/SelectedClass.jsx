@@ -99,7 +99,7 @@ const SelectedClass = () => {
                     </Link>
                     <button
                       onClick={() => handleDelete(c._id)}
-                      className="px-5 py-2 rounded-full  btn-error p-2"
+                      className="px-5 py-2 rounded-full btn-error p-2"
                     >
                       Delete
                     </button>

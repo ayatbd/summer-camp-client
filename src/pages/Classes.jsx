@@ -25,7 +25,7 @@ const Classes = () => {
   return (
     <div className="">
       <PagesBanner img={img} title="All Classes"></PagesBanner>
-      <div className="grid overflow-hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 my-14">
+      <div className="grid overflow-hidden grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8 my-14">
         {classDatas.map((classData) => (
           <ClassCard key={classData._id} classData={classData}></ClassCard>
         ))}

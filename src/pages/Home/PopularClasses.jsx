@@ -35,7 +35,7 @@ const PopularClasses = () => {
       <div
         data-aos="fade-up"
         data-aos-duration="1000"
-        className="grid overflow-hidden grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-14"
+        className="grid overflow-hidden grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-8 mt-14"
       >
         {classDatas.map((classData) => (
           <PopularClassCard

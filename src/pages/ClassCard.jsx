@@ -68,6 +68,8 @@ const ClassCard = ({ classData }) => {
     }
   };
 
+  // const arr = [];
+
   return (
     <div
       className={`p-1 group border custom-cls-2 border-gray-300 rounded ${
