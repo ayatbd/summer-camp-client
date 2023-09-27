@@ -18,11 +18,11 @@ const Dashboard = () => {
   const [isInstructor] = useInstructor();
 
   return (
-    <div className="box-border">
+    <div>
       <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center justify-center bg-white">
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
@@ -31,7 +31,7 @@ const Dashboard = () => {
             Open drawer
           </label>
         </div>
-        <div className="drawer-side bg-blue-600">
+        <div className="drawer-side bg-indigo-500">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <div>
             <div className="mt-3 hidden md:block">
@@ -49,7 +49,7 @@ const Dashboard = () => {
             </div>
             <ul className="menu p-4 w-[15rem] h-full text-base-content">
               {isStudent && (
-                <div>
+                <>
                   <li>
                     <NavLink
                       to="/dashboard/selectedclass"
@@ -75,10 +75,10 @@ const Dashboard = () => {
                       <MdOutlinePayment></MdOutlinePayment> Payment History
                     </NavLink>
                   </li>
-                </div>
+                </>
               )}
               {isInstructor && (
-                <div className="space-y-2">
+                <>
                   <li>
                     <NavLink
                       to="/dashboard/addclass"
@@ -95,10 +95,10 @@ const Dashboard = () => {
                       <FaChalkboardTeacher></FaChalkboardTeacher> My Classes
                     </NavLink>
                   </li>
-                </div>
+                </>
               )}
               {isAdmin && (
-                <div className="space-y-2">
+                <>
                   <li>
                     <NavLink
                       to="/dashboard/manageclass"
@@ -115,7 +115,7 @@ const Dashboard = () => {
                       <FaUserFriends></FaUserFriends> Manage Users
                     </NavLink>
                   </li>
-                </div>
+                </>
               )}
             </ul>
           </div>

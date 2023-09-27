@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ScaleLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import Loader from "../Shared/Loader";
 
@@ -65,7 +64,7 @@ const ManageClass = () => {
         {/* head */}
         <thead>
           <tr>
-            <th>Pictur</th>
+            <th className="hidden md:inline">Pictur</th>
             <th>Class Name</th>
             <th>Instructor Name</th>
             <th>Email</th>
@@ -77,7 +76,7 @@ const ManageClass = () => {
         <tbody>
           {classData.map((c) => (
             <tr key={c._id}>
-              <td>
+              <td className="hidden md:inline">
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
@@ -91,25 +90,23 @@ const ManageClass = () => {
               <td>{c.email}</td>
               <td>{c.availableSeats}</td>
               <td>{c.price}</td>
-              <td>
-                <div className="flex">
-                  <button
-                    className="btn btn-success rounded-full"
-                    disabled={c.status === "approved"}
-                    onClick={() => handleApprove(c._id)}
-                  >
-                    {c.status === "approved" ? "Approved" : "Approve"}
-                  </button>
-                  <button
-                    onClick={() => handleDelete(c._id)}
-                    className="btn btn-secondary rounded-full"
-                  >
-                    Deny
-                  </button>
-                  <button className="btn btn-info rounded-full">
-                    Feedback
-                  </button>
-                </div>
+              <td className="flex gap-1 justify-center items-center">
+                <button
+                  className="px-5 py-2 rounded-full btn-success hover:bg-blue-500 p-2"
+                  disabled={c.status === "approved"}
+                  onClick={() => handleApprove(c._id)}
+                >
+                  {c.status === "approved" ? "Approved" : "Approve"}
+                </button>
+                <button
+                  onClick={() => handleDelete(c._id)}
+                  className="px-5 py-2 rounded-full btn-error hover:bg-blue-500 p-2"
+                >
+                  Deny
+                </button>
+                <button className="px-5 py-2 rounded-full btn-info hover:bg-blue-500 p-2">
+                  Feedback
+                </button>
               </td>
             </tr>
           ))}
